@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+            /* General Styling */
+        body, html {
+            font-family: 'Quicksand', sans-serif;
+            height: 100%;
+            margin: 0;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #ffffff;
+        }
+
+        .container {
+            margin-top: 5rem;
+            padding: 1rem;
+        }
+
+        h1 {
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+                /* Navbar pendek */
+        .navbar {
+            box-shadow: 0px 4px 10px rgba(93, 91, 91, 0.8);
+            padding: 0.25rem 1rem; /* Mengurangi tinggi padding */
+            height: 56px; /* Atur tinggi tetap */
+        }
+
+        .navbar-brand img {
+            width: 100px; /* Perkecil ukuran logo */
+            height: auto;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+            margin: 0 0.5rem; /* Kurangi jarak antar link */
+            font-size: 0.9rem; /* Ukuran teks lebih kecil */
+        }
+
+        .navbar-toggler {
+            padding: 0.25rem 0.5rem; /* Perkecil tombol toggle */
+        }
+
+        .navbar-toggler-icon {
+            width: 20px; /* Perkecil ikon toggle */
+            height: 20px;
+        }
+
+        /* Cards Styling */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-text {
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card .btn {
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .card .btn-warning {
+            background-color: #ffcc00;
+            color: #000;
+        }
+
+        .card .btn-warning:hover {
+            background-color: #ffaa00;
+            color: #fff;
+        }
+
+        .card .btn-danger {
+            background-color: #ff4c4c;
+            color: #fff;
+        }
+
+        .card .btn-danger:hover {
+            background-color: #ff1c1c;
+        }
+
+        /* Buttons Styling */
+        .btn-primary {
+            background-color: #ff7e5f;
+            border: none;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #feb47b;
+            color: #fff;
+        }
+
+        /* Modal Styling */
+        .modal-content {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .modal-title {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            color: #ffffff;
+        }
+
+        .modal-body .form-group label {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .modal-body .form-control {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+        }
+
+        .modal-body .form-control::placeholder {
+            color: #e0e0e0;
+        }
+
+        .modal-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Alerts */
+        .alert {
+            background: rgba(255, 255, 255, 0.8);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .navbar-nav .nav-link {
+                margin: 0 0.5rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .modal-content {
+                padding: 1rem;
+            }
+        }
+        footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                font-size: 1rem;
+                background: #343a40; /* Warna latar belakang */
+                color: #ffffff; /* Warna teks */
+                padding: 1rem 0; /* Ruang di atas dan bawah teks */
+                z-index: 1000; /* Agar berada di atas elemen lain */
+                box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2); /* Memberikan efek bayangan */
+            }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!-- Logo di kiri -->
+            <a class="navbar-brand" href="<%= url %>">
+                <img src="https://logolook.net/wp-content/uploads/2024/02/Loro-Piana-Logo.png" alt="Priboen Logo" style="width: 150px;">
+            </a>
+    
+            <!-- Tombol Toggle untuk tampilan kecil -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Navigasi -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Navigasi tengah -->
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<%= url %>">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%= url %>profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%= url %>contact">Catalog</a>
+                    </li>
+                </ul>
+    
+                <!-- Tombol Logout di kanan -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%= url %>login/logout"><i class="fa fa-sign-out"></i> Sign Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>        
+
+    <div class="container mt-5 pt-5">
+        <h1 class="text-center mb-4">Catalog</h1>
+        <button class="btn btn-primary mb-4" data-toggle="modal" data-target="#addContactModal">Add Items</button>
+
+        <div class="row">
+            <% if (contacts.length > 0) { %>
+                <% contacts.forEach(function(contact) { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Name: <%= contact.name %></h5>
+                                <p class="card-text">Type: <%= contact.type %></p>
+                                <p class="card-text">Size: <%= contact.size %></p>
+                                <p class="card-text">Color: <%= contact.color %></p>
+                                <a href="#" 
+                                   class="btn btn-warning btn-sm edit-btn" 
+                                   data-id="<%= contact.id %>" 
+                                   data-name="<%= contact.name %>" 
+                                   data-type="<%= contact.type %>" 
+                                   data-size="<%= contact.size %>" 
+                                   data-color="<%= contact.color %>">
+                                   Edit
+                                </a>
+                                <form action="<%= url + 'contact/delete/' + contact.id %>" method="POST" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="col-12">
+                    <p class="text-center">No Data</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Modal Tambah Data -->
+    <div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="addContactModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addContactModalLabel">Add Items</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="<%= url + 'contact/save' %>" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <input type="text" class="form-control" id="type" name="type" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="size">Size</label>
+                            <input type="text" class="form-control" id="size" name="size" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="color">Color</label>
+                            <input type="text" class="form-control" id="color" name="color" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Data -->
+    <div class="modal fade" id="editContactModal" tabindex="-1" role="dialog" aria-labelledby="editContactModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editContactModalLabel">Edit Items</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editContactForm" method="POST">
+                        <input type="hidden" id="editContactId" name="id">
+                        <div class="form-group">
+                            <label for="editName">Name</label>
+                            <input type="text" class="form-control" id="editName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edittype">Type</label>
+                            <input type="text" class="form-control" id="edittype" name="type" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editsize">Size</label>
+                            <input type="text" class="form-control" id="editsize" name="size" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editcolor">Color</label>
+                            <input type="text" class="form-control" id="editcolor" name="color" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const editButtons = document.querySelectorAll(".edit-btn");
+            const editModal = document.getElementById("editContactModal");
+            const editForm = document.getElementById("editContactForm");
+
+            editButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const id = button.getAttribute("data-id");
+                    const name = button.getAttribute("data-name");
+                    const type = button.getAttribute("data-type");
+                    const size = button.getAttribute("data-size");
+                    const color = button.getAttribute("data-color");
+
+                    // Set form values
+                    document.getElementById("editContactId").value = id;
+                    document.getElementById("editName").value = name;
+                    document.getElementById("edittype").value = type;
+                    document.getElementById("editsize").value = size;
+                    document.getElementById("editcolor").value = color;
+
+                    // Set form action URL
+                    editForm.action = `<%= url %>contact/update/${id}`;
+
+                    // Show modal
+                    $(editModal).modal("show");
+                });
+            });
+        });
+    </script>
+</body>
+<footer class="bg-dark text-center text-white py-3 mt-5">
+    <p class="mb-0">Tugas PAW Styling Web | Namira Anjani Pramadhani | 20220140081</p>
+</footer> 
+</html>
